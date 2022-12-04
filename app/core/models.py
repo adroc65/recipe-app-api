@@ -43,6 +43,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     """
     Con la siguiente línea se indica al modelo de DJANGO, que el
-    username es el correo.
+    username es el correo. Ya que por default es un usuario.
     """
     USERNAME_FIELD = 'email'
