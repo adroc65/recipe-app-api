@@ -1,5 +1,6 @@
 """
 Serializers for the user API View.
+Se importa el Modelo de usuarios que usa Django.
 """
 from django.contrib.auth import (
     get_user_model,

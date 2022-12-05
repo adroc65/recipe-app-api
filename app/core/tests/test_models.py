@@ -1,18 +1,16 @@
 """
 Tests for models.
 """
+from decimal import Decimal
+
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
+from core import models     # modelos creados en esta carpeta.
+
 
 class ModelTests(TestCase):
-    """
-    Test models.
-    ------------
-    Va a generar un error de username, ya que el modelo de DJANGO
-    lo pide, sin embarga en el modelo a crear este no se esta dando,
-    pero es un error esperado.
-    """
+    """Test models."""
 
     def test_create_user_with_email_successful(self):
         """Test creating a user with an email is successful."""
@@ -52,3 +50,19 @@ class ModelTests(TestCase):
 
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
+
+    def test_create_recipe(self):
+        """Test creating a recipe is successful."""
+        user = get_user_model().objects.create_user(
+            'test@example.com',
+            'testpass123',
+        )
+        recipe = models.Recipe.objects.create(
+            user=user,
+            title='Sample recipe name',
+            time_minutes=5,
+            price=Decimal('5.50'),
+            description='Sample receipe description.',
+        )
+
+        self.assertEqual(str(recipe), recipe.title)
