@@ -45,4 +45,4 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(models.User, UserAdmin)
-admin.site.register(models.Recipe)
+admin.site.register(models.Recipe)  # Permite la administracion desde el Admin de Django.
